@@ -1,5 +1,7 @@
 from smolagents import CodeAgent, DuckDuckGoSearchTool
-from arguments_helper import ArgumentsHelper
+from helpers import ArgumentsHelper, register_opentelemetry_through_langfuse
+
+register_opentelemetry_through_langfuse()
 
 def main():
     agent = CodeAgent(tools=[DuckDuckGoSearchTool()], model=ArgumentsHelper().getModel())

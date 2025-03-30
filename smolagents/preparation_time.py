@@ -1,5 +1,7 @@
 from smolagents import CodeAgent
-from arguments_helper import ArgumentsHelper
+from helpers import ArgumentsHelper, register_opentelemetry_through_langfuse
+
+register_opentelemetry_through_langfuse()
 
 def main():
     agent = CodeAgent(tools=[], model=ArgumentsHelper().getModel(), additional_authorized_imports=['datetime'])

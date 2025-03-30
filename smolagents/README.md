@@ -21,6 +21,13 @@ export HF_TOKEN=""
 export OPENROUTER_API_KEY=""
 ```
 
+## Define opentelemetry variables
+```shell
+export LANGFUSE_SECRET_KEY=""
+export LANGFUSE_PUBLIC_KEY=""
+export OTEL_EXPORTER_OTLP_ENDPOINT="https://us.cloud.langfuse.com/api/public/otel"
+```
+
 ## Run script
 ```shell
 # use default huggingface provider

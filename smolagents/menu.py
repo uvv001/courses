@@ -1,5 +1,7 @@
 from smolagents import CodeAgent, tool
-from arguments_helper import ArgumentsHelper
+from helpers import ArgumentsHelper, register_opentelemetry_through_langfuse
+
+register_opentelemetry_through_langfuse()
 
 @tool
 def suggest_menu(occasion: str) -> str:
