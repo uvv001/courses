@@ -14,8 +14,17 @@ source $HOME/.local/bin/env
 uv sync
 ```
 
-## Define huggingface token
+## Define access tokens
 
 ```shell
 export HF_TOKEN=""
+export OPENROUTER_API_KEY=""
+```
+
+## Run script
+```shell
+# use default huggingface provider
+uv run playlist.py
+# use openrouter provider
+uv run playlist.py --provider openrouter
 ```

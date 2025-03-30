@@ -1,7 +1,8 @@
-from smolagents import CodeAgent, HfApiModel
+from smolagents import CodeAgent
+from arguments_helper import ArgumentsHelper
 
 def main():
-    agent = CodeAgent(tools=[], model=HfApiModel(), additional_authorized_imports=['datetime'])
+    agent = CodeAgent(tools=[], model=ArgumentsHelper().getModel(), additional_authorized_imports=['datetime'])
     agent.run(
         """
         Alfred needs to prepare for the party. Here are the tasks:

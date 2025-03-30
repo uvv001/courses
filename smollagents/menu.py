@@ -1,4 +1,5 @@
-from smolagents import CodeAgent, tool, HfApiModel
+from smolagents import CodeAgent, tool
+from arguments_helper import ArgumentsHelper
 
 @tool
 def suggest_menu(occasion: str) -> str:
@@ -22,7 +23,7 @@ def suggest_menu(occasion: str) -> str:
 
 def main():
     # Alfred, the butler, preparing the menu for the party
-    agent = CodeAgent(tools=[suggest_menu], model=HfApiModel())
+    agent = CodeAgent(tools=[suggest_menu], model=ArgumentsHelper().getModel())
 
     # Preparing the menu for the party
     agent.run("Prepare a formal menu for the party.")
