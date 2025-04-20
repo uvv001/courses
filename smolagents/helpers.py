@@ -10,16 +10,16 @@ class ArgumentsHelper:
     def __init__(self):
         import argparse
         parser = argparse.ArgumentParser(description="Run the CodeAgent with a specified provider.")
-        parser.add_argument("--provider", choices=["hg", "openrouter"], default="hg", help="Model provider: 'hg' (default) or 'openrouter'.")
+        parser.add_argument("--provider", choices=["hf", "openrouter"], default="openrouter", help="Model provider: 'hf' (default) or 'openrouter'.")
         self.args = parser.parse_args()
 
     def getModel(self):
-        if self.args.provider == "hg":
+        if self.args.provider == "hf":
             return HfApiModel()
         
         if self.args.provider == "openrouter":
             return LiteLLMModel(
-                model_id="openrouter/qwen/qwen-2.5-coder-32b-instruct:free",
+                model_id="openrouter/google/gemini-2.0-flash-001",
                 api_key=os.environ["OPENROUTER_API_KEY"]
             )
 
