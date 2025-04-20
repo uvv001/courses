@@ -1578,6 +1578,7 @@ dependencies = [
     { name = "openinference-instrumentation-smolagents" },
     { name = "opentelemetry-exporter-otlp" },
     { name = "opentelemetry-sdk" },
+    { name = "python-dotenv" },
     { name = "smolagents", extra = ["litellm"] },
 ]
 
@@ -1588,6 +1589,7 @@ requires-dist = [
     { name = "openinference-instrumentation-smolagents", specifier = ">=0.1.8" },
     { name = "opentelemetry-exporter-otlp", specifier = ">=1.31.1" },
     { name = "opentelemetry-sdk", specifier = ">=1.31.1" },
+    { name = "python-dotenv", specifier = ">=1.1.0" },
     { name = "smolagents", extras = ["litellm"], specifier = ">=1.12.0" },
 ]
 

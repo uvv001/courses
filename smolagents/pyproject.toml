@@ -10,5 +10,6 @@ dependencies = [
     "openinference-instrumentation-smolagents>=0.1.8",
     "opentelemetry-exporter-otlp>=1.31.1",
     "opentelemetry-sdk>=1.31.1",
+    "python-dotenv>=1.1.0",
     "smolagents[litellm]>=1.12.0",
 ]

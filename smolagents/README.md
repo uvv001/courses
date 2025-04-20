@@ -14,18 +14,14 @@ source $HOME/.local/bin/env
 uv sync
 ```
 
-## Define access tokens
+## Define .env file
 
 ```shell
-export HF_TOKEN=""
-export OPENROUTER_API_KEY=""
-```
-
-## Define opentelemetry variables
-```shell
-export LANGFUSE_SECRET_KEY=""
-export LANGFUSE_PUBLIC_KEY=""
-export OTEL_EXPORTER_OTLP_ENDPOINT="https://us.cloud.langfuse.com/api/public/otel"
+HF_TOKEN=
+OPENROUTER_API_KEY=
+LANGFUSE_SECRET_KEY=
+LANGFUSE_PUBLIC_KEY=
+OTEL_EXPORTER_OTLP_ENDPOINT=
 ```
 
 ## Run script

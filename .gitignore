@@ -13,6 +13,7 @@ _site
 aider/__version__.py
 aider/_version.py
 .venv/
+*.env
 .#*
 .gitattributes
 tmp.benchmarks/
@@ -40,3 +41,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
