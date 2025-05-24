@@ -9,6 +9,7 @@ dependencies = [
     "duckduckgo-search>=7.5.5",
     "gradio-client>=1.8.0",
     "huggingface-hub>=0.29.3",
+    "kaleido==0.2.1",
     "langchain>=0.3.23",
     "langchain-community>=0.3.21",
     "openinference-instrumentation-smolagents>=0.1.8",
