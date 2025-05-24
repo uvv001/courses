@@ -15,5 +15,6 @@ dependencies = [
     "opentelemetry-exporter-otlp>=1.31.1",
     "opentelemetry-sdk>=1.31.1",
     "python-dotenv>=1.1.0",
+    "rank-bm25>=0.2.2",
     "smolagents[litellm,mcp]>=1.12.0",
 ]
