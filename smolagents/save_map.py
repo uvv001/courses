@@ -1,10 +1,8 @@
 import math
+import pandas as pd
+import plotly.express as px
 from typing import Optional, Tuple
-from smolagents import CodeAgent, DuckDuckGoSearchTool, VisitWebpageTool, tool
-from helpers import ArgumentsHelper, register_opentelemetry_through_langfuse
-register_opentelemetry_through_langfuse()
 
-@tool
 def calculate_cargo_travel_time(
     origin_coords: Tuple[float, float],
     destination_coords: Tuple[float, float],
@@ -57,24 +55,34 @@ def calculate_cargo_travel_time(
     # Format the results
     return round(flight_time, 2)
 
+gotham_coords = (40.7128, -74.0060)  # Latitude, Longitude
 
-task = """Find all Batman filming locations in the world, calculate the time to transfer via cargo plane to here (we're in Gotham, 40.7128° N, 74.0060° W), and return them to me as a pandas dataframe.
-Also give me some supercar factories with the same cargo plane transfer time."""
+locations = [
+    {"name": "Chicago Board of Trade Building (The Dark Knight)", "latitude": 41.8789, "longitude": -87.6359},
+    {"name": "499-469 W Van Buren St, Chicago, IL 60607 (The Dark Knight)", "latitude": 41.876782, "longitude": -87.639278},
+    {"name": "Criterion Restaurant, London (The Dark Knight)", "latitude": 51.5101, "longitude": -0.1343},
+    {"name": "Ferrari Factory (Maranello, Italy)", "latitude": 44.5373, "longitude": 10.8605},
+    {"name": "Lamborghini Factory (Sant'Agata Bolognese, Italy)", "latitude": 44.6632, "longitude": 11.1316},
+    {"name": "McLaren Technology Centre (Woking, Surrey, England)", "latitude": 51.3192, "longitude": -0.5597},
+    {"name": "Porsche Factory (Stuttgart, Germany)", "latitude": 48.8211, "longitude": 9.1735},
+    {"name": "Bugatti Factory (Molsheim, France)", "latitude": 48.5409, "longitude": 7.4534},
+    {"name": "Aston Martin Headquarters (Gaydon, Warwickshire, England)", "latitude": 52.1655, "longitude": -1.5595}
+]
 
-agent = CodeAgent(
-    model=ArgumentsHelper().getModel(),
-    tools=[DuckDuckGoSearchTool(), VisitWebpageTool(), calculate_cargo_travel_time],
-    additional_authorized_imports=["pandas"],
-    max_steps=20,
-)
-agent.planning_interval = 4
-result = agent.run(f"""
-You're an expert analyst. You make comprehensive reports after visiting many websites.
-Don't hesitate to search for many queries at once in a for loop. If you face rate limits, delay each query by one second.
-When you are looking for geographical coordinates be aware that they could be in different formats (e.g. 40.7128° N, 74.0060° W or 40.7128, -74.0060).
-The coordinates could be delivered in a flexible text format, for example "The latitude of Liverpool, United Kingdom is 53.41058000, and the longitude is -2.97794000"
-For each data point that you find, visit the source url to confirm numbers.
+data = []
+for location in locations:
+    origin_coords = (location["latitude"], location["longitude"])
+    travel_time = calculate_cargo_travel_time(origin_coords=origin_coords, destination_coords=gotham_coords)
+    data.append({
+        "latitude": location["latitude"],
+        "longitude": location["longitude"],
+        "name": location["name"],
+        "travel_time": travel_time
+    })
 
-{task}
-""")
-print(result)
+df = pd.DataFrame(data)
+
+fig = px.scatter_map(df, lat="latitude", lon="longitude", text="name", color="travel_time",
+                     color_continuous_scale="Viridis", size_max=15, zoom=2)
+
+fig.write_image("debug_saved_map.png")
